@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:viewModels="clr-namespace:Actividad.Mobile.ViewModels;assembly=Actividad.Mobile"
+             x:Class="Actividad.Mobile.Views.VerPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:VerViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid Margin="10">
+
+            <StackLayout
+                Style="{StaticResource Datos}">
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Nombre: " />
+                    <Label Text="{Binding Estacionamiento.Nombre}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Descripción: " />
+                    <Label Text="{Binding Estacionamiento.Descripcion}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Costo: " />
+                    <Label Text="{Binding Estacionamiento.Costo}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Calificación: " />
+                    <Label Text="{Binding Estacionamiento.Calificacion}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Número: " />
+                    <Label Text="{Binding Estacionamiento.Numero}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Calle: " />
+                    <Label Text="{Binding Estacionamiento.Calle}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Colonia: " />
+                    <Label Text="{Binding Estacionamiento.Colonia}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Código Postal: " />
+                    <Label Text="{Binding Estacionamiento.CodigoPostal}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource PropiedadDatos}">
+                    <Label Text="Municipio: " />
+                    <Label Text="{Binding Estacionamiento.Municipio}"
+                           Style="{StaticResource EtiquetasDatos}" />
+                </StackLayout>
+
+                <maps:Map
+                    x:Name="Mapa"
+                    HasScrollEnabled="True"
+                    HasZoomEnabled="True"
+                    IsShowingUser="True"
+                    HeightRequest="300"
+                    ItemsSource="{Binding Pines}">
+
+                    <maps:Map.ItemTemplate>
+                        <DataTemplate>
+                            <maps:Pin
+                                x:DataType="maps:Pin"
+                                Position="{Binding Position}"
+                                Address="{Binding Address}"
+                                Label="{Binding Label}" />
+                        </DataTemplate>
+                    </maps:Map.ItemTemplate>
+
+                </maps:Map>
+
+            </StackLayout>
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

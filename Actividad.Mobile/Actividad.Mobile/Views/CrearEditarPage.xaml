@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Actividad.Mobile.ViewModels;assembly=Actividad.Mobile"
+             x:Class="Actividad.Mobile.Views.CrearEditarPage"
+             Title="{Binding BotonGuardar}">
+
+    <ContentPage.Resources>
+        <Style x:Key="EtiquetaInformacion" TargetType="Label">
+            <Setter Property="Margin" Value="2,2,2,5" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:CrearEditarViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Style="{StaticResource Formulario}">
+
+                <Entry Text="{Binding Estacionamiento.Id}"
+                       IsVisible="False" />
+
+                <Label Text="Nombre" />
+                <Entry Text="{Binding Estacionamiento.Nombre}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Descripción" />
+                <Entry Text="{Binding Estacionamiento.Descripcion}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Costo" />
+                <Entry Text="{Binding Estacionamiento.Costo}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Email" />
+
+                <Label Text="Calificación" />
+                <Entry Text="{Binding Estacionamiento.Calificacion}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Número" />
+                <Entry Text="{Binding Estacionamiento.Numero}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Calle" />
+                <Entry Text="{Binding Estacionamiento.Calle}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Colonia" />
+                <Entry Text="{Binding Estacionamiento.Colonia}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Código postal" />
+                <Entry Text="{Binding Estacionamiento.CodigoPostal}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Municipio" />
+                <Entry Text="{Binding Estacionamiento.Municipio}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Latitud" />
+                <Entry Text="{Binding Estacionamiento.Latitud}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="Longitud" />
+                <Entry Text="{Binding Estacionamiento.Longitud}"
+                       Style="{StaticResource CajasTextoDatos}"
+                       Keyboard="Text" />
+
+                <Label Text="{Binding Informacion}"
+                       Style="{StaticResource EtiquetaInformacion}" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Text="{Binding BotonGuardar}"
+                            Style="{StaticResource BotonEditar}"
+                            Command="{Binding GuardarCommand}" />
+
+                    <Button Grid.Column="1" Text="Limpiar"
+                            Style="{StaticResource BotonLimpiar}"
+                            Command="{Binding LimpiarCommand}" />
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

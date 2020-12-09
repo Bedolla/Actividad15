@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Actividad.Mobile.ViewModels;assembly=Actividad.Mobile"
+             xmlns:iOsSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:helpers="clr-namespace:Actividad.Mobile.Helpers;assembly=Actividad.Mobile"
+             iOsSpecific:Page.UseSafeArea="true"
+             x:Class="Actividad.Mobile.Views.LeerBorrarPage"
+             Title="Estacionamientos"
+             x:Name="Pagina">
+
+    <ContentPage.BindingContext>
+        <viewModels:LeerBorrarViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EtiquetaInfromacion" TargetType="Label">
+                <Setter Property="Margin" Value="2" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <SearchBar Grid.Row="0"
+                       Placeholder="Búsqueda de estacionamientos"
+                       Text="{Binding Buscado}"
+                       SearchCommand="{Binding BuscarCommand}"
+                       SearchCommandParameter="{Binding Buscado}" />
+
+            <ListView Grid.Row="1"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="False"
+                      ItemsSource="{Binding Estacionamientos}"
+                      SelectedItem="{Binding Seleccionado}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Editar"
+                                          Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.EditarCommand}"
+                                          CommandParameter="{Binding .}" />
+                                <MenuItem Text="Borrar"
+                                          Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.BorrarCommand}"
+                                          CommandParameter="{Binding .}"
+                                          IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            
+                            <StackLayout
+                                Style="{StaticResource Datos}">
+
+                                <StackLayout Style="{StaticResource PropiedadDatos}">
+                                    <Label Text="Nombre: " />
+                                    <Label Text="{Binding Nombre}"
+                                           Style="{StaticResource EtiquetasDatos}" />
+                                </StackLayout>
+
+                                <StackLayout Style="{StaticResource PropiedadDatos}">
+                                    <Label Text="Descripción: " />
+                                    <Label Text="{Binding Descripcion}"
+                                           Style="{StaticResource EtiquetasDatos}" />
+                                </StackLayout>
+
+                                <StackLayout Style="{StaticResource PropiedadDatos}">
+                                    <Label Text="Costo: " />
+                                    <Label Text="{Binding Costo}"
+                                           Style="{StaticResource EtiquetasDatos}" />
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <Label Grid.Row="2"
+                   Text="{Binding Informacion}"
+                   Style="{StaticResource EtiquetaInfromacion}" />
+
+            <Button Grid.Row="3"
+                    Text="Agregar"
+                    Style="{StaticResource BotonAgregar}"
+                    Command="{Binding AgregarCommand}" />
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
